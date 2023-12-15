@@ -1,0 +1,60 @@
+(defwidget greeter [?text name]
+  (box 
+    :orientation "horizontal"
+    :halign "center"
+    text
+    (button 
+      :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet"
+    )
+  )
+)
+
+(defwindow example
+  :monitor 0
+  :geometry 
+    (geometry
+      :x "0%"
+      :y "20px"
+      :width "90%"
+      :height "30px"
+      :anchor "top center"
+    )
+  :stacking "fg"
+  :windowtype "dock"
+  :exclusive true
+  (greeter 
+    :text "Say hello!, it's ${time}"
+    :name "Jad"
+  )
+)
+
+(defwidget labeled-container [name]
+  (box :class "container"
+    name
+    (children)
+  )
+)
+
+(defwidget two-boxes [name]
+  (box
+    (box :class "first" (children :nth 0))
+    (box :class "second" (children :nth 1))
+  )
+)
+
+(defvar foo "initial value")
+
+(defvar time-visible false)
+
+(defpoll time 
+  :interval "1s"
+  :initial "initial-value" ; Optional, defaults to poll at startup
+  :run-while time-visible
+  `date +%H:%M:%S`
+)
+
+; Updates everytime a line is appended to the file
+(deflisten foo_listen :initial "whatever"
+  `tail -F /tmp/some_file`
+)

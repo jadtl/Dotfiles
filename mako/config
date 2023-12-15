@@ -1,0 +1,9 @@
+# Enable same theme
+font=Poppins 11
+# Dismiss notification after 5 seconds
+default-timeout=5000
+# Rounded corners
+border-radius=10
+border-size=1
+# Catppuccin Frappe background color
+background-color=#414559FF
