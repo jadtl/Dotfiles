@@ -8,3 +8,6 @@ set -g fish_greeting 'All those moments will be lost in time, like tears in rain
 
 # GnuPG
 set -gx GPG_TTY (tty)
+
+# Default editor
+set -gx EDITOR "nvim"
