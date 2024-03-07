@@ -133,10 +133,11 @@ return {
                 -- col = center_x,
 
                 -- Position on the center right
-                width = 30,
+                width = 50,
                 height = 30,
                 row = 1,
-                col = screen_w,
+                col = 1,
+                -- col = screen_w,
               }
             end,
           },
