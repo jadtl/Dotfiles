@@ -502,4 +502,9 @@ return {
   --     })
   --   end,
   -- }
+  {
+    	'mhinz/vim-startify', -- Startup screen
+      name = "startup",
+      lazy= false,
+  }
 }
