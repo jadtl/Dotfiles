@@ -3,35 +3,29 @@
 eval /Users/jad/.pyenv/versions/anaconda3-2023.07-0/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
-set -x VULKAN_SDK /Users/jad/VulkanSDK/1.3.216.0
-set -x glslc $VULKAN_SDK/bin/macOS/glslc
-set -x PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-set -x PUPPETEER_EXECUTABLE_PATH `which chromium`
+# Default editor
+set -gx EDITOR "nvim"
+
+# Commit signing
+set -gx GPG_TTY $(tty)
 set -x VSCODE_GIT_ASKPASS_EXTRA_ARGS "--title=foobar"
-set -x RUST_LOG info
-set -x PATH $PATH:/Users/jad/.spicetify
-set -x PATH $(pyenv root)/shims:$PATH
+
+# Java home
 set -x JAVA_HOME /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
-set -x PATH "/usr/local/opt/llvm/bin:$PATH"
-set -x RUST_SRC_PATH "$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-set -x DYLD_LIBRARY_PATH "$(rustc --print sysroot)/lib:$DYLD_LIBRARY_PATH"
-set -x GPG_TTY $(tty) # To sign commits with pinentry
-set -x EDITOR "nvim"
 
-set -x LDFLAGS "-L/opt/homebrew/opt/openssl/lib" $LDFLAGS
-set -x CPPFLAGS "-I/opt/homebrew/opt/openssl/include" $CPPFLAGS
-
-alias spotify_theme="$HOME/Development/spotify-theme.sh"
-alias gvim="nvim --listen /tmp/nvim.pipe"
-
+# Starship
 starship init fish | source
+
+# Shell greeting
 set fish_greeting "All those moments will be lost in time, like tears in rain."
 
+# VSCode alias
 function code
 	set location "$PWD/$argv"
 	open -n -b "com.microsoft.VSCode" --args $location
 end
 
+# Path
 fish_add_path /usr/local/bin/
 fish_add_path /opt/homebrew/bin/
 fish_add_path /opt/homebrew/sbin
