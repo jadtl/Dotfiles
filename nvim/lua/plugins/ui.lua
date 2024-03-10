@@ -78,9 +78,6 @@ return {
         vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
       end 
 
-      local HEIGHT_RATIO = 0.8
-      local WIDTH_RATIO  = 0.5 
-
       require("nvim-tree").setup({
         on_attach = custom_on_attach, -- Load custom mappings
         hijack_cursor = false,
@@ -113,37 +110,16 @@ return {
             enable = true,
             quit_on_focus_loss = true,
             open_win_config = function()
-              -- Center floating window
-              -- Copied from https://github.com/MarioCarrion/videos/
-              local screen_w = vim.opt.columns:get()
-              local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-              local window_w = screen_w * WIDTH_RATIO
-              local window_h = screen_h * HEIGHT_RATIO
-              local window_w_int = math.floor(window_w)
-              local window_h_int = math.floor(window_h)
-              local center_x = (screen_w - window_w) / 2
-              local center_y = ((vim.opt.lines:get() - window_h) / 2)
-                               - vim.opt.cmdheight:get()
               return {
                 border = "rounded",
                 relative = "editor",
-                -- width = window_w_int,
-                -- height = window_h_int,
-                -- row = center_y,
-                -- col = center_x,
-
-                -- Position on the center right
                 width = 50,
                 height = 30,
                 row = 1,
                 col = 1,
-                -- col = screen_w,
               }
             end,
           },
-          -- width = function()
-          --   return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-          -- end,
         },
         renderer = {
           add_trailing = false,
@@ -153,7 +129,7 @@ return {
           indent_width = 2,
           special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
           symlink_destination = true,
-          highlight_git = false,
+          highlight_git = true,
           highlight_diagnostics = false,
           highlight_opened_files = "none",
           highlight_modified = "none",
@@ -266,7 +242,7 @@ return {
           show_on_open_dirs = true,
         },
         filters = {
-          git_ignored = true,
+          git_ignored = false,
           dotfiles = false,
           git_clean = false,
           no_buffer = false,
@@ -492,19 +468,17 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
-  -- {
-  --   "startup-nvim/startup.nvim", -- Startup screen
-  --   name = "startup",
-  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  --   config = function()
-  --     require("startup").setup({
-  --       
-  --     })
-  --   end,
-  -- }
   {
-    	'mhinz/vim-startify', -- Startup screen
-      name = "startup",
-      lazy= false,
-  }
+    -- Startup screen
+    "mhinz/vim-startify",     
+    name = "startup",
+    lazy = false,
+  },
+  { -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
+    opts = {},
+  },
 }
