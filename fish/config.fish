@@ -1,8 +1,3 @@
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /Users/jad/.pyenv/versions/anaconda3-2023.07-0/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
 # Default editor
 set -gx EDITOR "nvim"
 
