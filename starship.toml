@@ -25,7 +25,7 @@ style_user = 'bold lavender'
 
 [hostname]
 ssh_only = true
-format = '[$ssh_symbol$hostname ]($style)'
+format = '[$ssh_symbol $hostname:]($style)'
 style = 'bold pink'
 ssh_symbol = '🌍'
 
